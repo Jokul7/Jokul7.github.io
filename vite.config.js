@@ -13,7 +13,8 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src') // 设置 `@` 指向 `src` 目录
+      '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录
+      '/images': 'src/assets/images'
     }
   },
   base: './', // 设置打包路径
@@ -29,6 +30,26 @@ export default defineConfig({
     //     changeOrigin: true,
     //     secure: false,
     //     rewrite: (path) => path.replace('/api/', '/')
+    //   }
+    // }
+  },
+  build: {
+    terserOptions: {
+      compress: {
+        // 生产环境时移除console
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
+    // 取消计算文件大小，加快打包速度
+    reportCompressedSize: false,
+    sourcemap: true
+    // assetsDir: 'static/img',
+    // rollupOptions: {
+    //   output: {
+    //     chunkFileNames: 'js/[name]-[hash].js',
+    //     entryFileNames: 'js/[name]-[hash].js',
+    //     assetFileNames: '[ext]/[name]-[hash].[ext]'
     //   }
     // }
   }

@@ -1,15 +1,14 @@
 <template>
-  <div class="title">
-    <div>123</div>
-  </div>
+  <div class="title">123</div>
 </template>
 
 <style scoped>
 .title {
-  font-size: 0.5rem;
-  width: 200px;
-  height: 200px;
+  font-size: 16px;
+  width: 375px;
+  height: 375px;
   border-radius: 20px;
+  border: 1px solid #333333;
   background-color: #e1e1e1;
   display: flex;
 }

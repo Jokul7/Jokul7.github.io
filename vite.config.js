@@ -1,14 +1,15 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path' // @types/node
-import styleImport, { VantResolve } from 'vite-plugin-style-import'
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    styleImport({
-      resolves: [VantResolve()]
+    Components({
+      resolvers: [VantResolver()]
     })
   ],
   resolve: {
@@ -20,18 +21,19 @@ export default defineConfig({
   base: './', // 设置打包路径
   server: {
     port: 4000, // 设置服务启动端口号
+    host: '0.0.0.0',
     open: true, // 设置服务启动时是否自动打开浏览器
-    cors: true // 允许跨域
+    cors: true, // 允许跨域
 
-    // 设置代理，根据我们项目实际情况配置
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://xxx.xxx.xxx.xxx:8000',
-    //     changeOrigin: true,
-    //     secure: false,
-    //     rewrite: (path) => path.replace('/api/', '/')
-    //   }
-    // }
+    // 设置代理
+    proxy: {
+      '/api': {
+        target: 'https://netease-cloud-music-api-ochre-pi.vercel.app/',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace('/api/', '/')
+      }
+    }
   },
   // css: {
   //   preprocessorOptions: {
@@ -40,24 +42,5 @@ export default defineConfig({
   //     }
   //   }
   // },
-  build: {
-    terserOptions: {
-      compress: {
-        // 生产环境时移除console
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
-    // 取消计算文件大小，加快打包速度
-    reportCompressedSize: false,
-    sourcemap: true
-    // assetsDir: 'static/img',
-    // rollupOptions: {
-    //   output: {
-    //     chunkFileNames: 'js/[name]-[hash].js',
-    //     entryFileNames: 'js/[name]-[hash].js',
-    //     assetFileNames: '[ext]/[name]-[hash].[ext]'
-    //   }
-    // }
-  }
+  build: {}
 })

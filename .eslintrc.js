@@ -18,6 +18,7 @@ module.exports = {
     'import/no-unresolved': 'off', // 配置目录别名Eslint找不到资源
     'import/no-extraneous-dependencies': 'off', // 引入Path内置模块报错
     'vue/multi-word-component-names': 0,
+    'vue/no-v-model-argument': 'off', // v-model:xxx 的写法
     // no-param-reassign 白名单
     'no-param-reassign': [
       'error',

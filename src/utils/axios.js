@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-const baseURL = '/api-lefangsj/'
+const baseURL = '/api/'
 
 const axios = Axios.create({
   baseURL,

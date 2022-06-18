@@ -1,8 +1,25 @@
 <template>
-  <div class="title">123</div>
+  <div>
+    <h1 @click="handleClick">{{ count }}</h1>
+    <IndexSearch v-model="search" />
+  </div>
 </template>
 
-<style scoped>
+<script setup>
+import { ref, toRefs } from 'vue'
+import { useStore } from 'vuex'
+import IndexSearch from './components/IndexSearch.vue'
+
+const search = ref(false)
+const store = useStore()
+const { count } = toRefs(store.state)
+const handleClick = () => {
+  // store.dispatch('increment')
+  search.value = true
+}
+</script>
+
+<style scoped lang="scss">
 .title {
   font-size: 16px;
   width: 375px;

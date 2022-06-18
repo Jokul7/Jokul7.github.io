@@ -13,8 +13,8 @@ export default createStore({
     }
   },
   actions: {
-    increment(context) {
-      context.commit('increment')
+    increment(store) {
+      store.commit('increment')
     }
   },
   getters: {

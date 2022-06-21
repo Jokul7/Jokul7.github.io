@@ -30,17 +30,17 @@ export default defineConfig({
       '/api': {
         target: 'https://netease-cloud-music-api-ochre-pi.vercel.app/',
         changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace('/api/', '/')
+        // secure: false,
+        rewrite: (path) => path.replace('/api', '/')
       }
     }
   },
-  // css: {
-  //   preprocessorOptions: {
-  //     scss: {
-  //       additionalData: '@import "@/style/variables.scss";'
-  //     }
-  //   }
-  // },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/style/mixin.scss";@import "@/style/variables.scss";'
+      }
+    }
+  },
   build: {}
 })

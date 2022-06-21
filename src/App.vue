@@ -7,3 +7,9 @@ export default {
 <template>
   <router-view />
 </template>
+
+<style>
+body {
+  background-color: #ffffff;
+}
+</style>

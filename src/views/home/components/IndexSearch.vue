@@ -14,6 +14,7 @@
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue'
 import { Search, Popup } from 'vant'
+import axios from 'axios'
 // init
 const props = defineProps({
   modelValue: {
@@ -43,8 +44,19 @@ watch(show, (val) => {
 
 // search
 const search = ref('')
-function onCancel() {
+const onCancel = () => {
   show.value = false
+}
+const onSearch = () => {
+  axios
+    .get('/api/search', {
+      params: {
+        keywords: search.value
+      }
+    })
+    .then((res) => {
+      console.log(res)
+    })
 }
 </script>
 

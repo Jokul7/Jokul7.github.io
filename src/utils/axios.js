@@ -1,9 +1,9 @@
 import Axios from 'axios'
 
-const baseURL = '/api/'
+// const baseURL = '/api'
 
 const axios = Axios.create({
-  baseURL,
+  // baseURL: '/api',
   timeout: 20000 // 请求超时 20s
 })
 
@@ -29,7 +29,7 @@ axios.interceptors.response.use(
      * 统一处理接口响应错误，比如token过期无效、服务端异常等
      * 这里对 response 和 error 不做任何处理，直接返回
      */
-    return response
+    return response.data
   },
   (error) => {
     // Any status codes that falls outside the range of 2xx cause this function to trigger

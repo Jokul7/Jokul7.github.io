@@ -1,9 +1,10 @@
 import Axios from 'axios'
 
-// const baseURL = '/api'
+const baseURL = import.meta.env.DEV ? '/api' : ''
 
 const axios = Axios.create({
-  // baseURL: '/api',
+  baseURL,
+  // withCredentials: true, // 请求允许携带cookie
   timeout: 20000 // 请求超时 20s
 })
 

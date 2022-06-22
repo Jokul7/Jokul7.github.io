@@ -15,7 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录
-      '/images': 'src/assets/images'
+      images: resolve(__dirname, 'src/assets/images')
     }
   },
   base: './', // 设置打包路径
@@ -30,8 +30,7 @@ export default defineConfig({
       '/api': {
         target: 'https://netease-cloud-music-api-ochre-pi.vercel.app/',
         changeOrigin: true,
-        // secure: false,
-        rewrite: (path) => path.replace('/api', '/')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },

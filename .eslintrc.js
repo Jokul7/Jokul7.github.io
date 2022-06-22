@@ -28,5 +28,31 @@ module.exports = {
         ignorePropertyModificationsFor: ['state', 'config']
       }
     ]
+    // 这个是解决不写后缀报错的问题
+    // 'import/extensions': [
+    //   'error',
+    //   'ignorePackages',
+    //   {
+    //     js: 'never',
+    //     jsx: 'never',
+    //     ts: 'never',
+    //     tsx: 'never',
+    //     json: 'never'
+    //   }
+    // ]
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['@', './src']],
+        extensions: ['.ts', '.js', '.jsx', '.tsx'] // 可忽略的后缀名
+      }
+    }
+    //   // 这个是解决引入时没后缀查不到的问题
+    //   'import/resolver': {
+    //     node: {
+    //       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+    //     }
+    //   }
   }
 }

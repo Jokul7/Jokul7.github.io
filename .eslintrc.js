@@ -27,7 +27,8 @@ module.exports = {
         props: true,
         ignorePropertyModificationsFor: ['state', 'config']
       }
-    ]
+    ],
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }] // ++ 写法
     // 这个是解决不写后缀报错的问题
     // 'import/extensions': [
     //   'error',

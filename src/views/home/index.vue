@@ -1,21 +1,19 @@
 <template>
-  <!-- Layout -->
   <div class="top">
-    <div class="user" @click="handleUser"></div>
-    <Search class="search" placeholder="搜索歌曲" @click="handleClick" />
+    <van-icon name="wap-nav" color="#666666" size="24" @click="handleUser" />
+    <van-search class="search" shape="round" placeholder="搜索歌曲" @click="handleClick" />
   </div>
 
-  <!-- components -->
+  <!-- popup - components -->
+  <index-sidebar v-model="user" />
   <index-search v-model="search" />
-  <index-user v-model="user" />
 </template>
 
 <script setup>
 import { ref } from 'vue'
 // import { useStore } from 'vuex'
-import { Search } from 'vant'
-import IndexSearch from './components/IndexSearch.vue'
-import IndexUser from './components/IndexUser.vue'
+import IndexSidebar from './IndexSidebar.vue'
+import IndexSearch from './IndexSearch.vue'
 // const store = useStore()
 // const { count } = toRefs(store.state)
 // store.dispatch('increment')
@@ -33,14 +31,15 @@ const handleUser = () => {
 </script>
 
 <style scoped lang="scss">
+:deep(.van-search) {
+  padding: 6px 18px;
+}
+:deep(.van-search__field) {
+  padding: 8px 12px 8px 0;
+}
 .top {
   padding: 16px 12px 16px 16px;
-  @include layout;
-  .user {
-    margin-right: 8px;
-    @include circle(36px);
-    background-color: #f6f7f8;
-  }
+  @include flex(center, left);
   .search {
     flex: 1;
   }

@@ -1,6 +1,6 @@
 <template>
-  <Popup v-model:show="show" position="right" :style="{ height: '100%', width: '100%' }">
-    <Search
+  <van-popup v-model:show="show" position="right" :style="{ height: '100%', width: '100%' }">
+    <van-search
       v-model="search"
       show-action
       placeholder="搜索歌曲"
@@ -8,12 +8,11 @@
       @search="onSearch"
       @cancel="onCancel"
     />
-  </Popup>
+  </van-popup>
 </template>
 
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue'
-import { Search, Popup } from 'vant'
 import { getSearch } from '@/api/search'
 // init
 const props = defineProps({

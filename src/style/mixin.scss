@@ -12,7 +12,7 @@
 }
 
 // flex布局
-@mixin layout($align: center, $justify: left, $dir: row) {
+@mixin flex($align: center, $justify: space-between, $dir: row) {
 	display: flex;
 	align-items: $align;
 	justify-content: $justify;

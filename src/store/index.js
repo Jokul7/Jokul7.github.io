@@ -1,25 +1,10 @@
-import { createStore } from 'vuex'
+import usePageCacheStore from './pageCache'
 
-// Create a new store instance.
-export default createStore({
-  state() {
-    return {
-      count: 0
-    }
-  },
-  mutations: {
-    increment(state) {
-      state.count += 1
-    }
-  },
-  actions: {
-    increment(store) {
-      store.commit('increment')
-    }
-  },
-  getters: {
-    double(state) {
-      return 2 * state.count
-    }
+// 统一导出useStore方法
+const useStore = () => {
+  return {
+    pageCache: usePageCacheStore()
   }
-})
+}
+
+export default useStore

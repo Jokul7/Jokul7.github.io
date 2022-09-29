@@ -4,7 +4,7 @@ const baseURL = import.meta.env.DEV ? '/api' : ''
 
 const axios = Axios.create({
   baseURL,
-  // withCredentials: true, // 请求允许携带cookie
+  // withCredentials: true, // 跨域请求允许携带cookie
   timeout: 20000 // 请求超时 20s
 })
 

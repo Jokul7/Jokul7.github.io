@@ -1,0 +1,52 @@
+.block {
+  .head {
+    @include flex;
+    padding: 0 16px 0;
+    .left {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .right {
+      height: 26px;
+      width: 60px;
+      font-size: 13px;
+    }
+  }
+  .content {
+    @include flex(top, normal);
+    padding: 16px 0 0 16px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .item {
+      position: relative;
+      padding-right: 16px;
+      .image {
+        width: 98px;
+        border-radius: 8px;
+        border: 1px solid #f5f5f5;
+      }
+      .play-num {
+        @include flex(center, normal);
+        position: absolute;
+        top: 4px;
+        right: 20px;
+        padding: 2px 4px;
+        color: white;
+        backdrop-filter: blur(12px);
+        border-radius: 8px;
+        .num {
+          font-size: 12px;
+          transform: scale(0.94);
+        }
+      }
+      .title {
+        @include m-ellipsis;
+        color: #666666;
+        font-size: 13px;
+        line-height: 18px;
+      }
+    }
+  }
+}

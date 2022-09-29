@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Toast } from 'vant'
+import { Lazyload } from 'vant'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router/index'
@@ -8,4 +8,4 @@ import 'normalize.css'
 import 'vant/es/toast/style'
 
 const app = createApp(App)
-app.use(Toast).use(router).use(createPinia()).mount('#app')
+app.use(Lazyload).use(router).use(createPinia()).mount('#app')

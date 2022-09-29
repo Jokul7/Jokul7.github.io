@@ -10,7 +10,7 @@
     <div class="scroll-content">
       <van-pull-refresh v-model="refreshLoading" @refresh="onRefresh">
         <!-- 轮播 -->
-        <van-swipe class="my-swipe" :autoplay="5000" lazy-render>
+        <van-swipe class="swipe-banner" :autoplay="5000" lazy-render>
           <van-swipe-item v-for="obj in banner.extInfo?.banners" :key="obj.encodeId">
             <img :src="obj.pic" />
             <div class="tag" :style="{ backgroundColor: obj.titleColor }">
@@ -26,18 +26,18 @@
           </div>
         </div>
         <van-divider />
-        <div class="block">
-          <div class="head">
-            <div class="left">推荐歌单</div>
-            <div class="right"></div>
-          </div>
-          <div class="content">
-            <div class="item" v-for="obj in recommend.creatives" :key="obj.creativeId">
-              <img class="image" :src="obj.uiElement.image.imageUrl" alt="" />
-              <div class="title">{{ obj.uiElement.mainTitle.title }}</div>
-            </div>
-          </div>
-        </div>
+        <!-- 推荐歌单 -->
+        <slide-playlist :data="blockPlaylist"></slide-playlist>
+        <!-- 推荐音乐 -->
+        <block-divider v-if="blockStyle.uiElement"></block-divider>
+        <swiper-playlist :data="blockStyle"></swiper-playlist>
+        <!-- 雷达歌单 -->
+        <block-divider v-if="blockOffical.uiElement"></block-divider>
+        <slide-playlist :data="blockOffical"></slide-playlist>
+        <!-- 热门播客 -->
+        <block-divider v-if="blockPodcast.uiElement"></block-divider>
+        <swiper-playlist :data="blockPodcast"></swiper-playlist>
+        <block-divider></block-divider>
       </van-pull-refresh>
     </div>
   </div>
@@ -51,11 +51,14 @@
 import { ref, onMounted } from 'vue'
 import useStore from '@/store'
 import { storeToRefs } from 'pinia'
-import { getHomepage } from '@/api/home'
 import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
+import { getHomepage } from '@/api/homepage'
 import IndexSidebar from './IndexSidebar.vue'
 import IndexSearch from './IndexSearch.vue'
+import slidePlaylist from './components/slidePlaylist.vue'
+import swiperPlaylist from './components/swiperPlaylist.vue'
+import blockDivider from './components/blockDivider.vue'
 
 // pinia
 const { pageCache } = useStore()
@@ -63,17 +66,36 @@ const { homepage } = storeToRefs(pageCache)
 
 // 获取首页信息
 const banner = ref({})
-const recommend = ref({})
+const blockPlaylist = ref({})
+const blockStyle = ref({})
+const blockOffical = ref({})
+const blockPodcast = ref({})
 onMounted(() => {
+  const setData = (data) => {
+    data.forEach((item) => {
+      if (item.blockCode === 'HOMEPAGE_BANNER') {
+        banner.value = item
+      } else if (item.blockCode === 'HOMEPAGE_BLOCK_PLAYLIST_RCMD') {
+        blockPlaylist.value = item
+      } else if (item.blockCode === 'HOMEPAGE_BLOCK_STYLE_RCMD') {
+        blockStyle.value = item
+      } else if (item.blockCode === 'HOMEPAGE_BLOCK_MGC_PLAYLIST') {
+        blockOffical.value = item
+      } else if (item.blockCode === 'HOMEPAGE_VOICELIST_RCMD') {
+        blockPodcast.value = item
+        blockPodcast.value.uiElement = item.creatives[0].uiElement
+      }
+    })
+  }
   if (!Object.keys(homepage.value).length) {
     getHomepage().then((res) => {
       const { data } = res
       homepage.value = data
-      ;[banner.value, recommend.value] = data.blocks
+      setData(data.blocks)
     })
   } else {
     const { blocks } = homepage.value
-    ;[banner.value, recommend.value] = blocks
+    setData(blocks)
   }
 })
 // 刷新首页信息
@@ -113,13 +135,14 @@ const mainIcon = [
 </script>
 
 <style scoped lang="scss">
+@import './components/common.scss';
 :deep(.van-search) {
   padding: 6px 18px;
 }
 :deep(.van-search__field) {
   padding: 8px 12px 8px 0;
 }
-.my-swipe {
+.swipe-banner {
   margin-top: 14px;
   .van-swipe-item {
     font-size: 0;
@@ -136,7 +159,7 @@ const mainIcon = [
     bottom: 0;
     right: 4%;
     font-size: 12px;
-    color: #ffffff;
+    color: white;
     border-radius: 12px 0 12px 0;
     .tag-text {
       display: inline-block;
@@ -155,7 +178,7 @@ const mainIcon = [
 .top {
   @include flex(center, left);
   padding: 8px 12px 0 16px;
-  background-color: #ffffff;
+  background-color: white;
   .search {
     flex: 1;
   }
@@ -209,39 +232,6 @@ const mainIcon = [
       font-size: 12px;
       color: #777777;
       white-space: nowrap;
-    }
-  }
-}
-.block {
-  .head {
-    @include flex;
-    padding: 0 0 0 16px;
-    .left {
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .right {
-    }
-  }
-  .content {
-    @include flex(top, normal);
-    padding: 16px 0 0 16px;
-    overflow-y: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .item {
-      padding-right: 16px;
-      .image {
-        width: 100px;
-        border-radius: 8px;
-      }
-      .title {
-        @include m-ellipsis;
-        color: #666666;
-        font-size: 13px;
-        line-height: 18px;
-      }
     }
   }
 }

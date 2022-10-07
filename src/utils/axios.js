@@ -1,6 +1,7 @@
 import Axios from 'axios'
 
-const baseURL = import.meta.env.DEV ? '/api' : ''
+const baseURL = '/api'
+// const baseURL = import.meta.env.DEV ? '/api' : ''
 
 const axios = Axios.create({
   baseURL,

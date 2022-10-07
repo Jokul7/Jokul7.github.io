@@ -88,7 +88,7 @@ const palySong = (id) => {
 </script>
 
 <style lang="scss" scoped>
-@import './common.scss';
+@import '../style/common.scss';
 .swipe-music-list {
   width: 100%;
   height: 100%;

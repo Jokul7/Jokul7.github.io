@@ -43,8 +43,7 @@
   </div>
 
   <!-- popup - components -->
-  <index-sidebar v-model="sidebar" />
-  <index-search v-model="search" />
+  <SideBar v-model="sidebar" />
 </template>
 
 <script setup>
@@ -54,11 +53,10 @@ import { storeToRefs } from 'pinia'
 import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
 import { getHomepage } from '@/api/homepage'
-import IndexSidebar from './indexSidebar.vue'
-import IndexSearch from './indexSearch.vue'
-import slidePlaylist from './components/slidePlaylist.vue'
-import swiperPlaylist from './components/swiperPlaylist.vue'
-import blockDivider from './components/blockDivider.vue'
+import SideBar from '@/views/components/SideBar.vue'
+import slidePlaylist from './components/SlidePlaylist.vue'
+import swiperPlaylist from './components/SwiperPlaylist.vue'
+import blockDivider from './components/BlockDivider.vue'
 
 // pinia
 const { pageCache } = useStore()
@@ -108,9 +106,8 @@ const onRefresh = () => {
 }
 
 // 搜索
-const search = ref(false)
 const handleClick = () => {
-  search.value = true
+  console.log('search')
 }
 
 // 侧栏
@@ -135,7 +132,7 @@ const mainIcon = [
 </script>
 
 <style scoped lang="scss">
-@import './components/common.scss';
+@import './style/common.scss';
 :deep(.van-search) {
   padding: 6px 18px;
 }

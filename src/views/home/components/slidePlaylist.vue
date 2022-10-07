@@ -36,5 +36,5 @@ const countPlayNum = (num) => {
 </script>
 
 <style lang="scss" scoped>
-@import './common.scss';
+@import '../style/common.scss';
 </style>

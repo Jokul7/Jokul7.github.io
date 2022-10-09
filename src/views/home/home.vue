@@ -27,16 +27,16 @@
         </div>
         <van-divider />
         <!-- 推荐歌单 -->
-        <slide-playlist :data="blockPlaylist" />
+        <slide-play-list :data="blockPlaylist" />
         <!-- 推荐音乐 -->
         <block-divider v-if="blockStyle.uiElement" />
-        <swiper-playlist :data="blockStyle" />
+        <swiper-play-list :data="blockStyle" />
         <!-- 雷达歌单 -->
         <block-divider v-if="blockOffical.uiElement" />
-        <slide-playlist :data="blockOffical" />
+        <slide-play-list :data="blockOffical" />
         <!-- 热门播客 -->
         <block-divider v-if="blockPodcast.uiElement" />
-        <swiper-playlist :data="blockPodcast" />
+        <swiper-play-list :data="blockPodcast" />
         <block-divider />
       </van-pull-refresh>
     </div>
@@ -54,8 +54,8 @@ import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
 import { getHomepage } from '@/api/homepage'
 import SideBar from '@/views/components/SideBar.vue'
-import SlidePlaylist from './components/SlidePlaylist.vue'
-import SwiperPlaylist from './components/SwiperPlaylist.vue'
+import SlidePlayList from './components/SlidePlayList.vue'
+import SwiperPlayList from './components/SwiperPlayList.vue'
 import BlockDivider from './components/BlockDivider.vue'
 
 // pinia

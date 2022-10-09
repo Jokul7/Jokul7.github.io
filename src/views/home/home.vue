@@ -27,17 +27,17 @@
         </div>
         <van-divider />
         <!-- 推荐歌单 -->
-        <slide-playlist :data="blockPlaylist"></slide-playlist>
+        <slide-playlist :data="blockPlaylist" />
         <!-- 推荐音乐 -->
-        <block-divider v-if="blockStyle.uiElement"></block-divider>
-        <swiper-playlist :data="blockStyle"></swiper-playlist>
+        <block-divider v-if="blockStyle.uiElement" />
+        <swiper-playlist :data="blockStyle" />
         <!-- 雷达歌单 -->
-        <block-divider v-if="blockOffical.uiElement"></block-divider>
-        <slide-playlist :data="blockOffical"></slide-playlist>
+        <block-divider v-if="blockOffical.uiElement" />
+        <slide-playlist :data="blockOffical" />
         <!-- 热门播客 -->
-        <block-divider v-if="blockPodcast.uiElement"></block-divider>
-        <swiper-playlist :data="blockPodcast"></swiper-playlist>
-        <block-divider></block-divider>
+        <block-divider v-if="blockPodcast.uiElement" />
+        <swiper-playlist :data="blockPodcast" />
+        <block-divider />
       </van-pull-refresh>
     </div>
   </div>

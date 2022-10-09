@@ -7,7 +7,7 @@
       <Mic color="#000000" :size="26" />
     </div>
 
-    <div class="scroll-content">
+    <div class="scroll-content has-tabbar">
       <van-pull-refresh v-model="refreshLoading" @refresh="onRefresh">
         <!-- 轮播 -->
         <van-swipe class="swipe-banner" :autoplay="5000" lazy-render>
@@ -46,10 +46,13 @@
         <divider-block />
       </van-pull-refresh>
     </div>
+
+    <!-- tabbar -->
+    <tab-bar />
   </div>
 
   <!-- popup - components -->
-  <SideBar v-model="sidebar" />
+  <side-bar v-model="sidebar" />
 </template>
 
 <script setup>
@@ -59,7 +62,8 @@ import { storeToRefs } from 'pinia'
 import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
 import { getHomepage } from '@/api/homepage'
-import SideBar from '@/views/components/SideBar.vue'
+import SideBar from 'cmpt/SideBar.vue'
+import TabBar from 'cmpt/TabBar.vue'
 import SlideList from './components/SlideList.vue'
 import SwiperList from './components/SwiperList.vue'
 import DividerBlock from './components/DividerBlock.vue'
@@ -113,7 +117,7 @@ const onRefresh = () => {
 
 // 搜索
 const handleClick = () => {
-  console.log('search')
+  return false
 }
 
 // 侧栏

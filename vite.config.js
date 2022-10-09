@@ -43,7 +43,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'), // 设置 `@` 指向 `src` 目录
-      images: resolve(__dirname, 'src/assets/images')
+      images: resolve(__dirname, 'src/assets/images'),
+      cmpt: resolve(__dirname, 'src/views/components')
     }
   },
   base: '/', // 设置打包路径

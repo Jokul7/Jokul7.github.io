@@ -13,7 +13,7 @@ export default defineConfig({
       resolvers: [VantResolver()]
     }),
     VitePWA({
-      includeAssets: ['favicon.ico'],
+      includeAssets: ['favicon.png', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'music',
         short_name: 'music',
@@ -29,6 +29,12 @@ export default defineConfig({
             src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
           }
         ]
       }

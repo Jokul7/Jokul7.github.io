@@ -13,5 +13,5 @@
   overflow-y: auto;
 }
 .has-tabbar{
-  margin-bottom: 50px;
+  margin-bottom: 50px + env(safe-area-inset-bottom);
 }

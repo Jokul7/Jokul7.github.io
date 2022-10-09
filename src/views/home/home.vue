@@ -54,9 +54,9 @@ import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
 import { getHomepage } from '@/api/homepage'
 import SideBar from '@/views/components/SideBar.vue'
-import slidePlaylist from './components/SlidePlaylist.vue'
-import swiperPlaylist from './components/SwiperPlaylist.vue'
-import blockDivider from './components/BlockDivider.vue'
+import SlidePlaylist from './components/SlidePlaylist.vue'
+import SwiperPlaylist from './components/SwiperPlaylist.vue'
+import BlockDivider from './components/BlockDivider.vue'
 
 // pinia
 const { pageCache } = useStore()

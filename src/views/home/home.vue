@@ -18,6 +18,7 @@
             </div>
           </van-swipe-item>
         </van-swipe>
+
         <!-- 金刚区 -->
         <div class="main-icon">
           <div class="item" v-for="item in mainIcon" :key="item.name">
@@ -26,18 +27,23 @@
           </div>
         </div>
         <van-divider />
+
         <!-- 推荐歌单 -->
-        <slide-play-list :data="blockPlaylist" />
+        <slide-list :data="blockPlaylist" />
+
         <!-- 推荐音乐 -->
-        <block-divider v-if="blockStyle.uiElement" />
-        <swiper-play-list :data="blockStyle" />
+        <divider-block v-if="blockStyle.uiElement" />
+        <swiper-list :data="blockStyle" />
+
         <!-- 雷达歌单 -->
-        <block-divider v-if="blockOffical.uiElement" />
-        <slide-play-list :data="blockOffical" />
+        <divider-block v-if="blockOffical.uiElement" />
+        <slide-list :data="blockOffical" />
+
         <!-- 热门播客 -->
-        <block-divider v-if="blockPodcast.uiElement" />
-        <swiper-play-list :data="blockPodcast" />
-        <block-divider />
+        <divider-block v-if="blockPodcast.uiElement" />
+        <swiper-list :data="blockPodcast" />
+
+        <divider-block />
       </van-pull-refresh>
     </div>
   </div>
@@ -54,9 +60,9 @@ import { Toast } from 'vant'
 import { Menu, Mic } from 'lucide-vue-next'
 import { getHomepage } from '@/api/homepage'
 import SideBar from '@/views/components/SideBar.vue'
-import SlidePlayList from './components/SlidePlayList.vue'
-import SwiperPlayList from './components/SwiperPlayList.vue'
-import BlockDivider from './components/BlockDivider.vue'
+import SlideList from './components/SlideList.vue'
+import SwiperList from './components/SwiperList.vue'
+import DividerBlock from './components/DividerBlock.vue'
 
 // pinia
 const { pageCache } = useStore()
